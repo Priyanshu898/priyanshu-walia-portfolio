@@ -6,13 +6,12 @@ const GITHUB_URL = "https://github.com/Priyanshu898";
 const LINKEDIN_URL = "https://www.linkedin.com/in/priyanshu-walia-2b312a337";
 const EMAIL = "waliapriyanshu.me789@gmail.com";
 
-const RESUME_URL = "/resume.pdf";
-const PROFILE_IMAGE = "/profile.jpg";
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const RESUME_URL = `${BASE_PATH}/Resume.pdf`;
+const PROFILE_IMAGE = `${BASE_PATH}/profile.jpg`;
 
 const PROJECT_URLS = {
-  roxy: "#",
-  ebook: "#",
-  cloud: "#",
+  roxy: "https://github.com/Priyanshu898/AI-Voice-Assistant",
 };
 
 const navigation = [
@@ -78,7 +77,6 @@ const projects = [
     description:
       "A responsive web application developed using Flask, SQLite, HTML, CSS, Bootstrap and JavaScript.",
     tags: ["Python", "Flask", "SQLite", "Bootstrap", "JavaScript"],
-    url: PROJECT_URLS.ebook,
   },
   {
     number: "03",
@@ -94,7 +92,6 @@ const projects = [
       "Networking",
       "RAID",
     ],
-    url: PROJECT_URLS.cloud,
   },
 ];
 
@@ -419,17 +416,19 @@ export default function Portfolio() {
                 </div>
               </div>
 
-              <div className="project-action">
-                <a
-                  href={project.url}
-                  target={project.url === "#" ? undefined : "_blank"}
-                  rel={project.url === "#" ? undefined : "noopener noreferrer"}
-                  className="circle-button"
-                  aria-label={`Open ${project.title} project`}
-                >
-                  ↗
-                </a>
-              </div>
+              {project.url && (
+                <div className="project-action">
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="circle-button"
+                    aria-label={`Open ${project.title} project`}
+                  >
+                    ↗
+                  </a>
+                </div>
+              )}
             </article>
           ))}
         </div>
